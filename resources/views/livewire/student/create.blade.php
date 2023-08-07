@@ -15,7 +15,11 @@
                     <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
                     <input wire:model="name" type="text" id="name"
                         class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
-                    {{-- show validation message --}}
+                    <div class="text-red-500">
+                        @error('name')
+                            {{ $message }}
+                        @enderror
+                    </div>
                 </div>
 
                 <div class="col-span-6 sm:col-span-3">
@@ -23,12 +27,22 @@
                         Address</label>
                     <input wire:model="email" type="text" id="email" autocomplete="email"
                         class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+                    <div class="text-red-500">
+                        @error('email')
+                            {{ $message }}
+                        @enderror
+                    </div>
                 </div>
 
                 <div class="col-span-6 sm:col-span-4">
                     <label for="image" class="block text-sm font-medium text-gray-700">Image</label>
                     <input wire:model="image" type="file" id="image"
                         class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+                    <div class="text-red-500">
+                        @error('image')
+                            {{ $message }}
+                        @enderror
+                    </div>
                 </div>
 
                 <div class="col-span-6 sm:col-span-3">
@@ -42,6 +56,11 @@
                             </option>
                         @endforeach
                     </select>
+                    <div class="text-red-500">
+                        @error('class_id')
+                            {{ $message }}
+                        @enderror
+                    </div>
                 </div>
 
                 <div class="col-span-6 sm:col-span-3">
@@ -53,6 +72,11 @@
                             Section A
                         </option>
                     </select>
+                    <div class="text-red-500">
+                        @error('section_id')
+                            {{ $message }}
+                        @enderror
+                    </div>
                 </div>
             </div>
         </div>

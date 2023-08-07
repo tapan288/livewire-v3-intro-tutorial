@@ -4,10 +4,24 @@ namespace App\Livewire\Student;
 
 use App\Models\Student;
 use Livewire\Component;
+use Livewire\Attributes\Rule;
 
 class Create extends Component
 {
-    public $name, $email, $image, $class_id, $section_id;
+    #[Rule('required|min:3')]
+    public $name;
+
+    #[Rule('required|email')]
+    public $email;
+
+    #[Rule('required|image')]
+    public $image;
+
+    #[Rule('required|exists:classes')]
+    public $class_id;
+
+    #[Rule('required|exists:sections')]
+    public $section_id;
 
     public function render()
     {
@@ -18,6 +32,8 @@ class Create extends Component
 
     public function save()
     {
+        $this->validate();
+
         Student::create(
             $this->only(['title', 'email', 'image', 'class_id', 'section_id'])
         );
