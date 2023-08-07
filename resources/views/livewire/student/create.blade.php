@@ -47,7 +47,7 @@
 
                 <div class="col-span-6 sm:col-span-3">
                     <label for="class_id" class="block text-sm font-medium text-gray-700">Class</label>
-                    <select wire:model="class_id" id="class_id"
+                    <select wire:model.live="class_id" id="class_id"
                         class="mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                         <option value="">Select a Class</option>
                         @foreach ($classes as $class)
@@ -68,9 +68,11 @@
                     <select wire:model="section_id" id="section_id"
                         class="mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                         <option value="">Select a Section</option>
-                        <option value="1">
-                            Section A
-                        </option>
+                        @foreach ($sections as $section)
+                            <option value="{{ $section->id }}">
+                                {{ $section->name }} - {{ $section->class->name }}
+                            </option>
+                        @endforeach
                     </select>
                     <div class="text-red-500">
                         @error('section_id')

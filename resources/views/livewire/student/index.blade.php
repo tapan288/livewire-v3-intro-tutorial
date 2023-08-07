@@ -42,11 +42,8 @@
                                     {{ $student->email }}
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                    {{-- <img
-                                    src="#"
-                                    alt=""
-                                    width="200px"
-                                /> --}}
+                                    <img src="{{ $student?->getMedia()?->last()?->getUrl() }}" alt=""
+                                        width="200px" />
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                     {{ $student->class->name }}
