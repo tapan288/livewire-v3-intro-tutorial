@@ -1,4 +1,4 @@
-<form action="#" method="POST">
+<form wire:submit="save">
     <div class="shadow sm:rounded-md sm:overflow-hidden">
         <div class="bg-white py-6 px-4 space-y-6 sm:p-6">
             <div>
@@ -13,7 +13,7 @@
             <div class="grid grid-cols-6 gap-6">
                 <div class="col-span-6 sm:col-span-3">
                     <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-                    <input type="text" id="name"
+                    <input wire:model="name" type="text" id="name"
                         class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
                     {{-- show validation message --}}
                 </div>
@@ -21,37 +21,32 @@
                 <div class="col-span-6 sm:col-span-3">
                     <label for="email" class="block text-sm font-medium text-gray-700">Email
                         Address</label>
-                    <input type="text" id="email" autocomplete="email"
+                    <input wire:model="email" type="text" id="email" autocomplete="email"
                         class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
                 </div>
 
                 <div class="col-span-6 sm:col-span-4">
-                    <label for="phone_number" class="block text-sm font-medium text-gray-700">Phone
-                        Number</label>
-                    <input type="text" id="phone_number"
-                        class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
-                </div>
-
-                <div class="col-span-6 sm:col-span-4">
-                    <label for="avatar" class="block text-sm font-medium text-gray-700">Avatar</label>
-                    <input type="file" id="avatar"
+                    <label for="image" class="block text-sm font-medium text-gray-700">Image</label>
+                    <input wire:model="image" type="file" id="image"
                         class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
                 </div>
 
                 <div class="col-span-6 sm:col-span-3">
                     <label for="class_id" class="block text-sm font-medium text-gray-700">Class</label>
-                    <select id="class_id"
+                    <select wire:model="class_id" id="class_id"
                         class="mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                         <option value="">Select a Class</option>
-                        <option value="1">
-                            Class 1
-                        </option>
+                        @foreach ($classes as $class)
+                            <option value="{{ $class->id }}">
+                                {{ $class->name }}
+                            </option>
+                        @endforeach
                     </select>
                 </div>
 
                 <div class="col-span-6 sm:col-span-3">
                     <label for="section_id" class="block text-sm font-medium text-gray-700">Section</label>
-                    <select id="section_id"
+                    <select wire:model="section_id" id="section_id"
                         class="mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                         <option value="">Select a Section</option>
                         <option value="1">
@@ -62,7 +57,7 @@
             </div>
         </div>
         <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-            <a href="#" as="button"
+            <a href="{{ route('students.index') }}" as="button"
                 class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                 Cancel
             </a>
