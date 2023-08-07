@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Student;
 
+use App\Livewire\Forms\UpdateStudent;
 use App\Models\Section;
 use App\Models\Student;
 use Livewire\Component;
@@ -15,28 +16,21 @@ class Edit extends Component
 
     public Student $student;
 
-    #[Rule('required|min:3')]
-    public $name;
-
-    #[Rule('required|email')]
-    public $email;
-
-    #[Rule('nullable|image')]
-    public $image;
+    public UpdateStudent $form;
 
     #[Rule('required')]
     public $class_id;
-
-    #[Rule('required')]
-    public $section_id;
 
     public $sections = [];
 
     public function mount()
     {
+        $this->form->setStudent($this->student);
+
         $this->fill(
-            $this->student->only('name', 'class_id', 'section_id', 'email'),
+            $this->student->only('class_id'),
         );
+
         $this->sections = Section::where('class_id', $this->student->class_id)->get();
     }
 
@@ -57,18 +51,7 @@ class Edit extends Component
     {
         $this->validate();
 
-        $this->student->update([
-            'name' => $this->name,
-            'class_id' => $this->class_id,
-            'section_id' => $this->section_id,
-            'email' => $this->email,
-        ]);
-
-        if ($this->image) {
-            $this->student
-                ->addMedia($this->image)
-                ->toMediaCollection();
-        }
+        $this->form->update($this->class_id);
 
         return redirect()->route('students.index')
             ->with('status', 'Student details updated successfully.');
