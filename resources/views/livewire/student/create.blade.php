@@ -13,7 +13,7 @@
             <div class="grid grid-cols-6 gap-6">
                 <div class="col-span-6 sm:col-span-3">
                     <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-                    <input wire:model="name" type="text" id="name"
+                    <input wire:model="form.name" type="text" id="name"
                         class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
                     <div class="text-red-500">
                         @error('name')
@@ -25,7 +25,7 @@
                 <div class="col-span-6 sm:col-span-3">
                     <label for="email" class="block text-sm font-medium text-gray-700">Email
                         Address</label>
-                    <input wire:model="email" type="text" id="email" autocomplete="email"
+                    <input wire:model="form.email" type="text" id="email" autocomplete="email"
                         class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
                     <div class="text-red-500">
                         @error('email')
@@ -36,7 +36,7 @@
 
                 <div class="col-span-6 sm:col-span-4">
                     <label for="image" class="block text-sm font-medium text-gray-700">Image</label>
-                    <input wire:model="image" type="file" id="image"
+                    <input wire:model="form.image" type="file" id="image"
                         class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
                     <div class="text-red-500">
                         @error('image')
@@ -65,7 +65,7 @@
 
                 <div class="col-span-6 sm:col-span-3">
                     <label for="section_id" class="block text-sm font-medium text-gray-700">Section</label>
-                    <select wire:model="section_id" id="section_id"
+                    <select wire:model="form.section_id" id="section_id"
                         class="mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                         <option value="">Select a Section</option>
                         @foreach ($sections as $section)
