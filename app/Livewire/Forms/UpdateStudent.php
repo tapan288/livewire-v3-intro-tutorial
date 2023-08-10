@@ -16,7 +16,7 @@ class UpdateStudent extends Form
     #[Rule('required|email')]
     public $email;
 
-    #[Rule('required|image')]
+    #[Rule('nullable|image')]
     public $image;
 
     #[Rule('required')]
